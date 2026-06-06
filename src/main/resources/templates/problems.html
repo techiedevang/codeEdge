@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CodeEdge — Problems.java</title>
+  <link rel="stylesheet" th:href="@{/css/style.css(v=2.0)}"/>
+</head>
+<body>
+<div class="app-window">
+  <!-- Window Titlebar -->
+  <div class="titlebar">
+    <div class="window-controls">
+      <span class="control-btn close"></span>
+      <span class="control-btn minimize"></span>
+      <span class="control-btn maximize"></span>
+    </div>
+    <div class="app-title">CodeEdge Workspace — Problems.java</div>
+    <div class="menu-bar">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">Selection</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Go</span>
+      <span class="menu-item">Run</span>
+      <span class="menu-item">Terminal</span>
+      <span class="menu-item">Help</span>
+    </div>
+  </div>
+
+  <!-- Workspace Container -->
+  <div class="workspace-container">
+    <!-- Activity Bar -->
+    <aside class="activity-bar">
+      <div class="activity-top">
+        <a href="/" class="activity-btn" title="Dashboard">
+          <span class="icon">📊</span>
+        </a>
+        <a href="/problems" class="activity-btn active" title="Problems Explorer">
+          <span class="icon">🧩</span>
+        </a>
+        <a href="/interview" class="activity-btn" title="Mock Interview">
+          <span class="icon">🎯</span>
+        </a>
+        <a href="/companies" class="activity-btn" title="Companies Bank">
+          <span class="icon">🏢</span>
+        </a>
+      </div>
+      <div class="activity-bottom">
+        <a href="/swagger-ui.html" target="_blank" class="activity-btn" title="API Docs">
+          <span class="icon">📖</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Explorer Panel -->
+    <aside class="side-panel">
+      <div class="panel-header">
+        <span class="panel-title">EXPLORER</span>
+        <span class="panel-subtitle">CODEEDGE [WORKSPACE]</span>
+      </div>
+      <div class="explorer-tree">
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▼</span> <span class="folder-icon">📂</span> src/main/java
+          </div>
+          <div class="tree-children">
+            <div class="tree-row">
+              <span>☕</span> <a href="/">Dashboard.java</a>
+            </div>
+            <div class="tree-row active">
+              <span>☕</span> <a href="/problems">Problems.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/interview">MockInterview.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/companies">Companies.java</a>
+            </div>
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▶</span> <span class="folder-icon">📂</span> resources/static
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span>📄</span> <a href="/swagger-ui.html" target="_blank">api-spec.yaml</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Editor Pane -->
+    <main class="editor-pane">
+      <!-- Tabs Bar -->
+      <div class="tabs-bar">
+        <div class="tab">
+          <span class="tab-icon text-purple">☕</span>
+          <a href="/">Dashboard.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab active">
+          <span class="tab-icon text-yellow">☕</span>
+          <a href="/problems">Problems.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-cyan">☕</span>
+          <a href="/interview">MockInterview.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-green">☕</span>
+          <a href="/companies">Companies.java</a>
+          <span class="tab-close">×</span>
+        </div>
+      </div>
+
+      <!-- Breadcrumbs Bar -->
+      <div class="breadcrumbs-bar">
+        <div class="crumb">codeedge</div>
+        <span class="sep">/</span>
+        <div class="crumb">src</div>
+        <span class="sep">/</span>
+        <div class="crumb">main</div>
+        <span class="sep">/</span>
+        <div class="crumb">controllers</div>
+        <span class="sep">/</span>
+        <div class="crumb text-active">Problems.java</div>
+      </div>
+
+      <!-- Scrollable Editor Content -->
+      <div class="editor-content-scroll">
+        <div class="page-header animate-in">
+          <h1>🧩 DSA Problems Repository</h1>
+          <p>
+            Loaded <strong th:text="${totalCount}">0</strong> problems registry keys
+            (<strong th:text="${solvedCount}" style="color:var(--green)">0</strong> items marked solved)
+          </p>
+        </div>
+
+        <!-- Filter Bar -->
+        <form method="get" action="/problems" class="animate-in delay-1">
+          <div class="filter-bar">
+            <span class="filter-label">Topic:</span>
+            <select name="topic" class="filter-select auto-submit">
+              <option value="ALL">All Topics</option>
+              <option th:each="t : ${topics}" th:value="${t.name()}" th:text="${t.displayName}"
+                      th:selected="${t.name() == selectedTopic}"></option>
+            </select>
+
+            <span class="filter-label">Difficulty:</span>
+            <select name="difficulty" class="filter-select auto-submit">
+              <option value="ALL">All Levels</option>
+              <option th:each="d : ${difficulties}" th:value="${d.name()}" th:text="${d.name()}"
+                      th:selected="${d.name() == selectedDifficulty}"></option>
+            </select>
+
+            <span class="filter-label">Status:</span>
+            <select name="solved" class="filter-select auto-submit">
+              <option value="ALL">All Statuses</option>
+              <option value="false" th:selected="${selectedSolved == 'false'}">Unsolved</option>
+              <option value="true"  th:selected="${selectedSolved == 'true'}">Solved</option>
+            </select>
+
+            <input type="text" name="search" class="filter-input" placeholder="🔍 Find by title / tag..."
+                   th:value="${searchQuery}" oninput="onSearch(this)"/>
+
+            <a href="/problems" class="btn btn-ghost btn-sm">Reset</a>
+          </div>
+        </form>
+
+        <!-- Problems Table -->
+        <div class="card animate-in delay-2">
+          <div th:if="${#lists.isEmpty(problems)}" class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <p>No compiled problems match the specified query filters.</p>
+          </div>
+          <div class="table-wrap" th:if="${!#lists.isEmpty(problems)}">
+            <table class="problem-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Topic</th>
+                  <th>Difficulty</th>
+                  <th>Target Companies</th>
+                  <th>Acceptance</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="p,i : ${problems}" th:class="${p.solved} ? 'solved-row' : ''">
+                  <td style="color:var(--muted);font-family:'Fira Code', monospace;font-size:11px" th:text="${i.count}"></td>
+                  <td>
+                    <div style="display:flex;flex-direction:column;gap:2px">
+                      <a class="title-link" th:href="${p.leetcodeLink}" target="_blank" th:text="${p.title}"></a>
+                      <span th:if="${p.hint}" style="font-size:10px;color:var(--muted)" th:text="'💡 Hint: ' + ${p.hint}"></span>
+                    </div>
+                  </td>
+                  <td style="color:var(--muted2)" th:text="${p.topic.displayName}"></td>
+                  <td>
+                    <span th:class="'badge badge-' + ${#strings.toLowerCase(p.difficulty.name())}"
+                          th:text="${p.difficulty}"></span>
+                  </td>
+                  <td>
+                    <div style="display:flex;flex-wrap:wrap;gap:4px">
+                      <span class="company-tag" th:each="c : ${p.companies}" th:text="${c}"></span>
+                    </div>
+                  </td>
+                  <td style="font-family:'Fira Code', monospace;font-size:11px;color:var(--muted)" th:text="${p.acceptanceRate != null ? p.acceptanceRate + '%' : '—'}"></td>
+                  <td>
+                    <span th:if="${p.solved}" class="badge badge-solved">✓ Solved</span>
+                    <span th:unless="${p.solved}" class="badge badge-unsolved">Unsolved</span>
+                  </td>
+                  <td>
+                    <button th:if="${!p.solved}"
+                            th:onclick="'toggleSolve(' + ${p.id} + ', false)'"
+                            class="btn btn-success btn-sm">✓ Solve</button>
+                    <button th:if="${p.solved}"
+                            th:onclick="'toggleSolve(' + ${p.id} + ', true)'"
+                            class="btn btn-ghost btn-sm">Unmark</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Status Bar -->
+  <footer class="status-bar">
+    <div class="status-left">
+      <span class="status-indicator live">Ready</span>
+      <span class="status-item"><span style="color:rgba(255,255,255,0.7)"></span> main</span>
+      <span class="status-item">Spring Boot v3.2.5</span>
+      <span class="status-item">H2: Connected</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item" th:text="${solvedCount + '/' + totalCount + ' Solved'}">0/0 Solved</span>
+      <span class="status-item">Java (JDK 17)</span>
+      <span class="status-item">UTF-8</span>
+    </div>
+  </footer>
+</div>
+
+<script th:src="@{/js/app.js(v=2.0)}"></script>
+</body>
+</html>

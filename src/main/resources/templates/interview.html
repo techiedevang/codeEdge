@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CodeEdge — MockInterview.java</title>
+  <link rel="stylesheet" th:href="@{/css/style.css(v=2.0)}"/>
+</head>
+<body>
+<div class="app-window">
+  <!-- Window Titlebar -->
+  <div class="titlebar">
+    <div class="window-controls">
+      <span class="control-btn close"></span>
+      <span class="control-btn minimize"></span>
+      <span class="control-btn maximize"></span>
+    </div>
+    <div class="app-title">CodeEdge Workspace — MockInterview.java</div>
+    <div class="menu-bar">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">Selection</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Go</span>
+      <span class="menu-item">Run</span>
+      <span class="menu-item">Terminal</span>
+      <span class="menu-item">Help</span>
+    </div>
+  </div>
+
+  <!-- Workspace Container -->
+  <div class="workspace-container">
+    <!-- Activity Bar -->
+    <aside class="activity-bar">
+      <div class="activity-top">
+        <a href="/" class="activity-btn" title="Dashboard">
+          <span class="icon">📊</span>
+        </a>
+        <a href="/problems" class="activity-btn" title="Problems Explorer">
+          <span class="icon">🧩</span>
+        </a>
+        <a href="/interview" class="activity-btn active" title="Mock Interview">
+          <span class="icon">🎯</span>
+        </a>
+        <a href="/companies" class="activity-btn" title="Companies Bank">
+          <span class="icon">🏢</span>
+        </a>
+      </div>
+      <div class="activity-bottom">
+        <a href="/swagger-ui.html" target="_blank" class="activity-btn" title="API Docs">
+          <span class="icon">📖</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Explorer Panel -->
+    <aside class="side-panel">
+      <div class="panel-header">
+        <span class="panel-title">EXPLORER</span>
+        <span class="panel-subtitle">CODEEDGE [WORKSPACE]</span>
+      </div>
+      <div class="explorer-tree">
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▼</span> <span class="folder-icon">📂</span> src/main/java
+          </div>
+          <div class="tree-children">
+            <div class="tree-row">
+              <span>☕</span> <a href="/">Dashboard.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/problems">Problems.java</a>
+            </div>
+            <div class="tree-row active">
+              <span>☕</span> <a href="/interview">MockInterview.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/companies">Companies.java</a>
+            </div>
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▶</span> <span class="folder-icon">📂</span> resources/static
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span>📄</span> <a href="/swagger-ui.html" target="_blank">api-spec.yaml</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Editor Pane -->
+    <main class="editor-pane">
+      <!-- Tabs Bar -->
+      <div class="tabs-bar">
+        <div class="tab">
+          <span class="tab-icon text-purple">☕</span>
+          <a href="/">Dashboard.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-yellow">☕</span>
+          <a href="/problems">Problems.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab active">
+          <span class="tab-icon text-cyan">☕</span>
+          <a href="/interview">MockInterview.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-green">☕</span>
+          <a href="/companies">Companies.java</a>
+          <span class="tab-close">×</span>
+        </div>
+      </div>
+
+      <!-- Breadcrumbs Bar -->
+      <div class="breadcrumbs-bar">
+        <div class="crumb">codeedge</div>
+        <span class="sep">/</span>
+        <div class="crumb">src</div>
+        <span class="sep">/</span>
+        <div class="crumb">main</div>
+        <span class="sep">/</span>
+        <div class="crumb">controllers</div>
+        <span class="sep">/</span>
+        <div class="crumb text-active">MockInterview.java</div>
+      </div>
+
+      <!-- Scrollable Editor Content -->
+      <div class="editor-content-scroll">
+        <div class="page-header animate-in">
+          <h1>🎯 Mock Interview Lab</h1>
+          <p>Configure, schedule, and run mock technical interview loops</p>
+        </div>
+
+        <!-- Flash -->
+        <div th:if="${success}" class="flash flash-success animate-in" th:text="${success}"></div>
+
+        <!-- Stats Row -->
+        <div class="stats-grid" style="margin-bottom:16px">
+          <div class="card stat-card animate-in delay-1">
+            <div class="icon-wrap bg-cyan"><span>📅</span></div>
+            <div class="label">Scheduled Labs</div>
+            <div class="value text-cyan" th:text="${scheduledCount}">0</div>
+          </div>
+          <div class="card stat-card animate-in delay-2">
+            <div class="icon-wrap bg-green"><span>✅</span></div>
+            <div class="label">Completed Runs</div>
+            <div class="value text-green" th:text="${completedCount}">0</div>
+          </div>
+          <div class="card stat-card animate-in delay-3">
+            <div class="icon-wrap bg-purple"><span>⭐</span></div>
+            <div class="label">Avg Score</div>
+            <div class="value text-purple" th:text="${avgScore} + '%'">—</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <!-- Schedule Form -->
+          <div class="card animate-in delay-1">
+            <div class="section-title">📅 Schedule New Session</div>
+            <form method="post" action="/interview/schedule">
+              <div class="form-grid" style="gap:8px">
+                <div class="form-group" style="grid-column:1/-1">
+                  <label class="form-label">Title *</label>
+                  <input type="text" name="title" class="form-input" required placeholder="e.g. Google L3 Technical Screen"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Target Company</label>
+                  <input type="text" name="targetCompany" class="form-input" placeholder="e.g. Google"/>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Duration (min)</label>
+                  <input type="number" name="durationMinutes" class="form-input" value="60" min="15" max="180"/>
+                </div>
+                <div class="form-group" style="grid-column:1/-1">
+                  <label class="form-label">Scheduled Time *</label>
+                  <input type="datetime-local" name="scheduledTime" class="form-input" required/>
+                </div>
+                <div class="form-group" style="grid-column:1/-1">
+                  <label class="form-label">Focus Topics (Ctrl to multiselect)</label>
+                  <select name="topics" multiple class="form-select" style="height:90px">
+                    <option th:each="t : ${topics}" th:value="${t.name()}" th:text="${t.displayName}"></option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" style="margin-top:12px;width:100%">📅 Schedule Session</button>
+            </form>
+          </div>
+
+          <!-- Live Timer -->
+          <div class="card animate-in delay-2" style="text-align:center;display:flex;flex-direction:column;justify-content:center">
+            <div class="section-title" style="justify-content:center">⏱️ Lab Countdown Timer</div>
+            <div id="timer-display" class="timer-display">00:00</div>
+            <div style="display:flex;gap:6px;justify-content:center;margin-bottom:10px">
+              <button class="btn btn-primary btn-sm" onclick="startTimer(60)">▶ Start (60 min)</button>
+              <button class="btn btn-ghost btn-sm" onclick="startTimer(45)">45m</button>
+              <button class="btn btn-ghost btn-sm" onclick="startTimer(30)">30m</button>
+            </div>
+            <div class="timer-controls">
+              <button class="btn btn-ghost btn-sm" onclick="pauseTimer()">⏸ Pause</button>
+              <button class="btn btn-danger btn-sm" onclick="resetTimer()">⏹ Reset</button>
+            </div>
+            <p style="font-size:11px;color:var(--muted);margin-top:12px">
+              💡 Use this clock during your mock sessions to simulate actual placement stress
+            </p>
+          </div>
+        </div>
+
+        <!-- Interview List -->
+        <div class="card animate-in delay-3">
+          <div class="section-title">📋 Scheduled Session Logs</div>
+          <div th:if="${#lists.isEmpty(interviews)}" class="empty-state">
+            <div class="empty-icon">📋</div>
+            <p>No interviews scheduled yet. Configure a session above.</p>
+          </div>
+          <div class="table-wrap" th:if="${!#lists.isEmpty(interviews)}">
+            <table class="problem-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Company</th>
+                  <th>Scheduled Date</th>
+                  <th>Duration</th>
+                  <th>Score</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="iv : ${interviews}">
+                  <td style="font-weight:600;color:var(--text-active)" th:text="${iv.title}"></td>
+                  <td style="color:var(--muted2)" th:text="${iv.targetCompany ?: '—'}"></td>
+                  <td style="font-family:'Fira Code', monospace;font-size:11px;color:var(--muted)" th:text="${#temporals.format(iv.scheduledTime,'dd MMM yyyy HH:mm')}"></td>
+                  <td style="font-family:'Fira Code', monospace;font-size:11px" th:text="${iv.durationMinutes} + ' min'"></td>
+                  <td>
+                    <div th:if="${iv.score != null}"
+                         th:class="'score-circle ' + (${iv.score >= 70} ? 'score-high' : (${iv.score >= 40} ? 'score-mid' : 'score-low'))"
+                         th:text="${iv.score} + '%'"
+                         style="width:34px;height:34px;font-size:10px"></div>
+                    <span th:unless="${iv.score != null}" style="color:var(--muted)">—</span>
+                  </td>
+                  <td>
+                    <span th:class="'badge badge-' + ${#strings.toLowerCase(iv.status.name())}"
+                          th:text="${iv.status}"></span>
+                  </td>
+                  <td>
+                    <div style="display:flex;gap:4px">
+                      <button th:if="${iv.status.name() == 'SCHEDULED' or iv.status.name() == 'IN_PROGRESS'}"
+                              th:onclick="'openCompleteModal(' + ${iv.id} + ')'"
+                              class="btn btn-success btn-sm">✓ Complete</button>
+                      <form th:if="${iv.status.name() == 'SCHEDULED'}"
+                            th:action="'/interview/' + ${iv.id} + '/cancel'" method="post" style="display:inline">
+                        <button type="submit" class="btn btn-danger btn-sm">✗ Cancel</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Status Bar -->
+  <footer class="status-bar">
+    <div class="status-left">
+      <span class="status-indicator live">Ready</span>
+      <span class="status-item"><span style="color:rgba(255,255,255,0.7)"></span> main</span>
+      <span class="status-item">Spring Boot v3.2.5</span>
+      <span class="status-item">H2: Connected</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item" th:text="${completedCount + ' Sessions Completed'}">0 Sessions Completed</span>
+      <span class="status-item">Java (JDK 17)</span>
+      <span class="status-item">UTF-8</span>
+    </div>
+  </footer>
+</div>
+
+<!-- Complete Interview Modal -->
+<div id="complete-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+  <div class="card" style="width:400px;max-width:90vw">
+    <div class="section-title">✅ Complete Interview Session</div>
+    <form id="complete-form" method="post">
+      <input type="hidden" id="complete-id" name="_hidden"/>
+      <div class="form-group" style="margin-bottom:10px">
+        <label class="form-label">Performance Score (0–100)</label>
+        <input type="number" name="score" class="form-input" min="0" max="100" required placeholder="e.g. 80"/>
+      </div>
+      <div class="form-grid" style="margin-bottom:10px">
+        <div class="form-group">
+          <label class="form-label">Questions Attempted</label>
+          <input type="number" name="attempted" class="form-input" min="0" value="0"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Questions Solved</label>
+          <input type="number" name="solved" class="form-input" min="0" value="0"/>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:12px">
+        <label class="form-label">Critique &amp; Notes</label>
+        <textarea name="feedback" class="form-textarea" placeholder="Note down weak areas, performance during coding etc."></textarea>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button type="submit" class="btn btn-primary" style="flex:1">Save Report</button>
+        <button type="button" class="btn btn-ghost" onclick="closeCompleteModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script th:src="@{/js/app.js(v=2.0)}"></script>
+<script>
+  document.getElementById('complete-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeCompleteModal();
+  });
+  const origOpen = openCompleteModal;
+  window.openCompleteModal = function(id) {
+    document.getElementById('complete-form').action = '/interview/' + id + '/complete';
+    origOpen(id);
+  };
+</script>
+</body>
+</html>

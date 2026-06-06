@@ -1,0 +1,3268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CodeEdge — Problems</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-icon">⚡</div>
+    <h2>CodeEdge</h2>
+    <p>SDE Placement Prep</p>
+  </div>
+  <a href="/"          class="nav-link"><span class="icon">📊</span> Dashboard</a>
+  <a href="/problems"  class="nav-link active"><span class="icon">🧩</span> Problems</a>
+  <a href="/interview" class="nav-link"><span class="icon">🎯</span> Mock Interview</a>
+  <a href="/companies" class="nav-link"><span class="icon">🏢</span> Companies</a>
+  <a href="/swagger-ui.html" class="nav-link" target="_blank"><span class="icon">📖</span> API Docs</a>
+  <div class="sidebar-footer">CodeEdge v1.0 • Java Spring Boot</div>
+</nav>
+
+<main class="main">
+  <div class="page-header animate-in">
+    <h1>🧩 DSA Problems</h1>
+    <p>
+      Showing <strong>113</strong> problems
+      (<strong style="color:var(--green)">1</strong> solved)
+    </p>
+  </div>
+
+  <!-- Filter Bar -->
+  <form method="get" action="/problems" class="animate-in delay-1">
+    <div class="filter-bar">
+      <span class="filter-label">Topic:</span>
+      <select name="topic" class="filter-select auto-submit">
+        <option value="ALL">All Topics</option>
+        <option value="ARRAYS">Arrays</option>
+        <option value="STRINGS">Strings</option>
+        <option value="LINKED_LIST">Linked List</option>
+        <option value="TREES">Trees</option>
+        <option value="GRAPHS">Graphs</option>
+        <option value="DYNAMIC_PROGRAMMING">Dynamic Programming</option>
+        <option value="RECURSION">Recursion &amp; Backtracking</option>
+        <option value="BINARY_SEARCH">Binary Search</option>
+        <option value="HEAPS">Heaps &amp; Priority Queue</option>
+        <option value="SLIDING_WINDOW">Sliding Window</option>
+        <option value="TWO_POINTERS">Two Pointers</option>
+        <option value="GREEDY">Greedy</option>
+        <option value="STACK_QUEUE">Stack &amp; Queue</option>
+        <option value="HASHING">Hashing</option>
+        <option value="SORTING">Sorting</option>
+        <option value="MATH">Math &amp; Bit Manipulation</option>
+      </select>
+
+      <span class="filter-label">Difficulty:</span>
+      <select name="difficulty" class="filter-select auto-submit">
+        <option value="ALL">All Levels</option>
+        <option value="EASY">EASY</option>
+        <option value="MEDIUM">MEDIUM</option>
+        <option value="HARD">HARD</option>
+      </select>
+
+      <span class="filter-label">Status:</span>
+      <select name="solved" class="filter-select auto-submit">
+        <option value="ALL">All</option>
+        <option value="false">Unsolved</option>
+        <option value="true">Solved</option>
+      </select>
+
+      <input type="text" name="search" class="filter-input" placeholder="🔍 Search problem..."
+             value="" oninput="onSearch(this)"/>
+
+      <a href="/problems" class="btn btn-ghost btn-sm">Clear</a>
+    </div>
+  </form>
+
+  <!-- Problems Table -->
+  <div class="card animate-in delay-2">
+    
+    <div class="table-wrap">
+      <table class="problem-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Topic</th>
+            <th>Difficulty</th>
+            <th>Companies</th>
+            <th>Acceptance</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="solved-row">
+            <td style="color:var(--muted);font-size:12px">1</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/two-sum/" target="_blank">Two Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Use a HashMap to store complement → index</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span><span class="company-tag">Flipkart</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">49.5%</td>
+            <td>
+              <span class="badge badge-solved">✓ Solved</span>
+              
+            </td>
+            <td>
+              
+              <button onclick="toggleSolve(1, true)"
+                      class="btn btn-ghost btn-sm">Unmark</button>
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">2</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank">Best Time to Buy and Sell Stock</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Track minimum price seen so far</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Flipkart</span><span class="company-tag">Adobe</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">54.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(2, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">3</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/maximum-subarray/" target="_blank">Maximum Subarray (Kadane&#39;s Algorithm)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Keep running sum; reset when negative</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span><span class="company-tag">Goldman Sachs</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">50.1%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(3, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">4</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/container-with-most-water/" target="_blank">Container With Most Water</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two pointers from both ends</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">54.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(4, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">5</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/3sum/" target="_blank">3Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Sort + two pointers for each element</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Uber</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">32.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(5, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">6</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank">Product of Array Except Self</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Prefix and suffix products</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">64.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(6, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">7</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank">Maximum Product Subarray</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Track both max and min products</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Flipkart</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">34.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(7, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">8</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank">Find Minimum in Rotated Sorted Array</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Binary search on the pivot</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Microsoft</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">48.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(8, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">9</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank">Search in Rotated Sorted Array</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Modified binary search</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Uber</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">39.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(9, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">10</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/merge-intervals/" target="_blank">Merge Intervals</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Sort by start, merge overlapping</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">46.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(10, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">11</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/missing-number/" target="_blank">Missing Number</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Use sum formula: n*(n+1)/2 − sum</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Microsoft</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">63.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(11, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">12</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/trapping-rain-water/" target="_blank">Trapping Rain Water</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two pointers: track left/right max</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">60.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(12, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">13</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/jump-game/" target="_blank">Jump Game</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Track the farthest reachable index</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">38.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(13, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">14</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/rotate-array/" target="_blank">Rotate Array</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Reverse whole array, then halves</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Microsoft</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">39.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(14, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">15</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/spiral-matrix/" target="_blank">Spiral Matrix</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Shrink boundaries after each traversal</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">47.1%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(15, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">16</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/set-matrix-zeroes/" target="_blank">Set Matrix Zeroes</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Use first row/col as markers</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">51.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(16, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">17</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-consecutive-sequence/" target="_blank">Longest Consecutive Sequence</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Use a HashSet; start only from n-1 absent</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">46.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(17, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">18</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank">Find the Duplicate Number</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Floyd&#39;s cycle detection (tortoise &amp; hare)</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">59.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(18, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">19</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/sort-colors/" target="_blank">Sort Colors (Dutch National Flag)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Three-way partition with low/mid/high pointers</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Sorting</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">60.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(19, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">20</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/subarray-sum-equals-k/" target="_blank">Subarray Sum Equals K</a>
+                <span style="font-size:11px;color:var(--muted)">💡 HashMap of prefix sums</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Arrays</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Uber</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">44.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(20, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">21</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/valid-anagram/" target="_blank">Valid Anagram</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Count character frequencies</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">63.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(21, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">22</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/group-anagrams/" target="_blank">Group Anagrams</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Sort each word as key in HashMap</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">67.1%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(22, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">23</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-substring-without-repeating-characters/" target="_blank">Longest Substring Without Repeating Characters</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Sliding window with a HashSet</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">33.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(23, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">24</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-palindromic-substring/" target="_blank">Longest Palindromic Substring</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Expand around center</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">32.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(24, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">25</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/valid-parentheses/" target="_blank">Valid Parentheses</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Stack: push open, pop for close</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">40.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(25, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">26</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/generate-parentheses/" target="_blank">Generate Parentheses</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack with open/close counts</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">73.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(26, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">27</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/minimum-window-substring/" target="_blank">Minimum Window Substring</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Sliding window with two frequency maps</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Facebook</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">41.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(27, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">28</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/palindrome-partitioning/" target="_blank">Palindrome Partitioning</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack, check palindrome at each split</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">67.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(28, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">29</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/word-break/" target="_blank">Word Break</a>
+                <span style="font-size:11px;color:var(--muted)">💡 DP: dp[i] = can break s[0..i]</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">45.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(29, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">30</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank">Reverse Words in a String</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Split, trim, reverse list</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Microsoft</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">36.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(30, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">31</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/string-compression/" target="_blank">String Compression</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two pointers: read/write</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">48.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(31, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">32</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/" target="_blank">Implement strStr()</a>
+                <span style="font-size:11px;color:var(--muted)">💡 KMP or sliding window match</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">39.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(32, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">33</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-common-prefix/" target="_blank">Longest Common Prefix</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Vertical scan or trie</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Strings</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">41.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(33, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">34</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/reverse-linked-list/" target="_blank">Reverse Linked List</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Iterative: prev/curr/next pointers</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span><span class="company-tag">Adobe</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">73.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(34, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">35</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/linked-list-cycle/" target="_blank">Detect Cycle in Linked List</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Floyd&#39;s slow/fast pointer</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">49.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(35, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">36</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank">Merge Two Sorted Lists</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Compare heads and link smaller</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">62.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(36, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">37</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank">Merge K Sorted Lists</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Min-heap of (val, list-index)</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">52.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(37, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">38</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/" target="_blank">Remove Nth Node From End</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two pointers n apart</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">42.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(38, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">39</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/copy-list-with-random-pointer/" target="_blank">Copy List with Random Pointer</a>
+                <span style="font-size:11px;color:var(--muted)">💡 HashMap: old node → new node</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">54.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(39, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">40</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/add-two-numbers/" target="_blank">Add Two Numbers</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Simulate digit-by-digit with carry</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">42.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(40, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">41</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/lru-cache/" target="_blank">LRU Cache</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Doubly linked list + HashMap</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">42.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(41, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">42</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/reorder-list/" target="_blank">Reorder List</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Find mid, reverse second half, merge</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">56.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(42, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">43</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank">Palindrome Linked List</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Find mid, reverse second half, compare</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Linked List</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">51.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(43, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">44</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank">Maximum Depth of Binary Tree</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Recursive: 1 + max(left, right)</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">74.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(44, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">45</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/validate-binary-search-tree/" target="_blank">Validate Binary Search Tree</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Pass min/max bounds recursively</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">32.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(45, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">46</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">Binary Tree Level Order Traversal</a>
+                <span style="font-size:11px;color:var(--muted)">💡 BFS with a queue, track level size</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">67.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(46, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">47</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/symmetric-tree/" target="_blank">Symmetric Tree</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Mirror check: left.left==right.right</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">53.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(47, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">48</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank">Binary Tree Maximum Path Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 At each node: gain = max(left,0)+max(right,0)+val</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">39.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(48, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">49</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank">Lowest Common Ancestor of BST</a>
+                <span style="font-size:11px;color:var(--muted)">💡 If both &lt; root, go left; both &gt; root, go right</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">62.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(49, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">50</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank">Diameter of Binary Tree</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Max path through each node = left_h + right_h</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(50, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">51</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/" target="_blank">Kth Smallest Element in BST</a>
+                <span style="font-size:11px;color:var(--muted)">💡 In-order traversal gives sorted order</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">70.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(51, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">52</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank">Right Side View of Binary Tree</a>
+                <span style="font-size:11px;color:var(--muted)">💡 BFS: take last element of each level</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">61.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(52, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">53</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank">Construct Binary Tree from Inorder and Preorder</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Preorder root splits inorder into halves</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">61.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(53, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">54</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/flatten-binary-tree-to-linked-list/" target="_blank">Flatten Binary Tree to Linked List</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Morris traversal or stack-based preorder</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">64.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(54, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">55</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/path-sum-ii/" target="_blank">Path Sum II</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtracking DFS, collect paths summing to target</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Trees</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(55, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">56</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/number-of-islands/" target="_blank">Number of Islands</a>
+                <span style="font-size:11px;color:var(--muted)">💡 BFS/DFS flood fill from each &#39;1&#39;</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(56, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">57</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/clone-graph/" target="_blank">Clone Graph</a>
+                <span style="font-size:11px;color:var(--muted)">💡 BFS + HashMap&lt;oldNode, newNode&gt;</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">56.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(57, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">58</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/course-schedule/" target="_blank">Course Schedule (Cycle Detection)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Topological sort / DFS with visited states</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">45.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(58, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">59</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/course-schedule-ii/" target="_blank">Course Schedule II (Topo Sort)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Kahn&#39;s BFS algorithm</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">49.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(59, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">60</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" target="_blank">Number of Connected Components</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Union-Find or DFS count components</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">63.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(60, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">61</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/pacific-atlantic-water-flow/" target="_blank">Pacific Atlantic Water Flow</a>
+                <span style="font-size:11px;color:var(--muted)">💡 BFS from ocean edges inward</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">53.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(61, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">62</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/word-ladder/" target="_blank">Word Ladder</a>
+                <span style="font-size:11px;color:var(--muted)">💡 BFS on word graph with single-char changes</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">37.1%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(62, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">63</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/walls-and-gates/" target="_blank">Walls and Gates</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Multi-source BFS from all gates</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">60.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(63, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">64</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/rotting-oranges/" target="_blank">Rotting Oranges</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Multi-source BFS from all rotten oranges</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Graphs</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">52.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(64, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">65</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/climbing-stairs/" target="_blank">Climbing Stairs</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i] = dp[i-1] + dp[i-2] (Fibonacci)</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Adobe</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">51.8%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(65, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">66</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/coin-change/" target="_blank">Coin Change</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i] = min coins to make amount i</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Flipkart</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">42.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(66, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">67</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-increasing-subsequence/" target="_blank">Longest Increasing Subsequence</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i] = max LIS ending at i; O(n log n) with patience sort</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">54.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(67, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">68</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank">Longest Common Subsequence</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i][j]: match or max of skip-left/skip-up</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(68, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">69</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/" target="_blank">0/1 Knapsack Problem</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i][w] = max value with i items and capacity w</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Flipkart</span><span class="company-tag">Goldman Sachs</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">55.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(69, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">70</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/unique-paths/" target="_blank">Unique Paths</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i][j] = dp[i-1][j] + dp[i][j-1]</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">63.1%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(70, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">71</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/edit-distance/" target="_blank">Edit Distance</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i][j]: min ops to convert s1[0..i] to s2[0..j]</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">54.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(71, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">72</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/house-robber/" target="_blank">House Robber</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i] = max(dp[i-1], dp[i-2]+nums[i])</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">50.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(72, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">73</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/house-robber-ii/" target="_blank">House Robber II (Circular)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Run House Robber on [0..n-2] and [1..n-1]</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">41.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(73, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">74</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/decode-ways/" target="_blank">Decode Ways</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i]: ways to decode s[0..i]</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">34.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(74, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">75</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/partition-equal-subset-sum/" target="_blank">Partition Equal Subset Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Subset-sum DP for target = total/2</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">46.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(75, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">76</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/" target="_blank">Matrix Chain Multiplication</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i][j] = min multiplications for chain i..j</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Goldman Sachs</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">55.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(76, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">77</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/target-sum/" target="_blank">Target Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 DFS + memo or subset-sum with DP</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Dynamic Programming</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">45.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(77, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">78</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/binary-search/" target="_blank">Binary Search</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Classic lo/hi/mid — return mid when found</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Binary Search</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">55.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(78, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">79</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank">Search a 2D Matrix</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Treat matrix as flat sorted array</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Binary Search</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">49.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(79, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">80</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/find-peak-element/" target="_blank">Find Peak Element</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Move towards higher neighbor</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Binary Search</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">46.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(80, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">81</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/median-of-two-sorted-arrays/" target="_blank">Median of Two Sorted Arrays</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Binary search on shorter array partition</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Binary Search</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">37.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(81, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">82</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/" target="_blank">Kth Smallest in Sorted Matrix</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Binary search on value range + count</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Binary Search</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">60.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(82, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">83</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/" target="_blank">Capacity to Ship Packages in D Days</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Binary search on capacity range</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Binary Search</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">67.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(83, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">84</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/min-stack/" target="_blank">Min Stack</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two stacks: one for values, one for minimums</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Stack &amp; Queue</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">52.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(84, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">85</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/evaluate-reverse-polish-notation/" target="_blank">Evaluate Reverse Polish Notation</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Push numbers; on operator pop two, compute, push result</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Stack &amp; Queue</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">47.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(85, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">86</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/daily-temperatures/" target="_blank">Daily Temperatures</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Monotonic decreasing stack of indices</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Stack &amp; Queue</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">66.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(86, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">87</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/largest-rectangle-in-histogram/" target="_blank">Largest Rectangle in Histogram</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Monotonic stack of indices</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Stack &amp; Queue</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">44.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(87, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">88</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank">Sliding Window Maximum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Monotonic deque of indices</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Stack &amp; Queue</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">46.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(88, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">89</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank">Kth Largest Element in Array</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Min-heap of size k; or QuickSelect</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Heaps &amp; Priority Queue</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">65.1%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(89, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">90</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank">Top K Frequent Elements</a>
+                <span style="font-size:11px;color:var(--muted)">💡 HashMap + min-heap of size k</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Heaps &amp; Priority Queue</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">64.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(90, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">91</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank">Find Median from Data Stream</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two heaps: max-heap for lower, min-heap for upper half</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Heaps &amp; Priority Queue</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">51.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(91, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">92</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/task-scheduler/" target="_blank">Task Scheduler</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Max-heap by frequency; fill idle slots</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Heaps &amp; Priority Queue</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(92, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">93</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/reorganize-string/" target="_blank">Reorganize String</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Greedy with max-heap; alternate most frequent chars</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Heaps &amp; Priority Queue</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">53.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(93, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">94</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/" target="_blank">Two Sum II (Sorted Array)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two pointers from ends</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Two Pointers</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">60.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(94, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">95</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/move-zeroes/" target="_blank">Move Zeroes</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Snowball: count zeros behind, shift</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Two Pointers</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">60.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(95, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">96</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-repeating-character-replacement/" target="_blank">Longest Repeating Character Replacement</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Sliding window: window_size - max_freq &lt;= k</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Sliding Window</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Google</span><span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">51.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(96, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">97</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/minimum-size-subarray-sum/" target="_blank">Minimum Size Subarray Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Expand right; shrink left when sum &gt;= target</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Sliding Window</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">44.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(97, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">98</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/powx-n/" target="_blank">Pow(x, n) — Fast Exponentiation</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Recursive halving; handle negative n</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Math &amp; Bit Manipulation</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">34.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(98, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">99</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/number-of-1-bits/" target="_blank">Number of 1 Bits (Hamming Weight)</a>
+                <span style="font-size:11px;color:var(--muted)">💡 n &amp; (n-1) clears lowest set bit</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Math &amp; Bit Manipulation</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">67.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(99, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">100</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/counting-bits/" target="_blank">Counting Bits</a>
+                <span style="font-size:11px;color:var(--muted)">💡 dp[i] = dp[i&gt;&gt;1] + (i &amp; 1)</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Math &amp; Bit Manipulation</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">77.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(100, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">101</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/single-number/" target="_blank">Single Number</a>
+                <span style="font-size:11px;color:var(--muted)">💡 XOR all elements — duplicates cancel</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Math &amp; Bit Manipulation</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">70.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(101, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">102</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/fibonacci-number/" target="_blank">Fibonacci Number</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Memoized recursion or bottom-up DP</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">68.9%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(102, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">103</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/combination-sum/" target="_blank">Combination Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack with remaining target</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">70.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(103, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">104</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/permutations/" target="_blank">Permutations</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack: swap and recurse</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">76.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(104, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">105</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/subsets/" target="_blank">Subsets</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack: include or exclude each element</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">76.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(105, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">106</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/n-queens/" target="_blank">N-Queens Problem</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack with column, diagonal sets</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-hard">HARD</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">66.7%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(106, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">107</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank">Letter Combinations of Phone Number</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Backtrack over digit→chars map</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.5%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(107, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">108</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/word-search/" target="_blank">Word Search</a>
+                <span style="font-size:11px;color:var(--muted)">💡 DFS + backtrack on grid</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Recursion &amp; Backtracking</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Microsoft</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">40.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(108, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">109</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/sort-an-array/" target="_blank">Merge Sort Implementation</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Divide: split. Conquer: sort halves. Combine: merge.</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Sorting</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">62.0%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(109, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">110</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/top-k-frequent-words/" target="_blank">Top K Frequent Words</a>
+                <span style="font-size:11px;color:var(--muted)">💡 HashMap + min-heap; sort by freq then lex</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Hashing</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">57.3%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(110, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">111</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/two-sum-iii-data-structure-design/" target="_blank">Two Sum III - Data Structure Design</a>
+                <span style="font-size:11px;color:var(--muted)">💡 HashMap: store counts; check complement</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Hashing</td>
+            <td>
+              <span class="badge badge-easy">EASY</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">35.4%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(111, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">112</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/4sum/" target="_blank">4Sum</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Fix two indices + two pointers</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Two Pointers</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span><span class="company-tag">Google</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">36.2%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(112, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+          <tr>
+            <td style="color:var(--muted);font-size:12px">113</td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <a class="title-link" href="https://leetcode.com/problems/longest-mountain-in-array/" target="_blank">Longest Mountain in Array</a>
+                <span style="font-size:11px;color:var(--muted)">💡 Two passes: expand left then right from peak</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted2)">Two Pointers</td>
+            <td>
+              <span class="badge badge-medium">MEDIUM</span>
+            </td>
+            <td>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">
+                <span class="company-tag">Amazon</span>
+              </div>
+            </td>
+            <td style="font-size:12px;color:var(--muted)">39.6%</td>
+            <td>
+              
+              <span class="badge badge-unsolved">Unsolved</span>
+            </td>
+            <td>
+              <button onclick="toggleSolve(113, false)"
+                      class="btn btn-success btn-sm">✓ Solve</button>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<script src="/js/app.js"></script>
+</body>
+</html>

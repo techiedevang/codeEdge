@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CodeEdge — Companies.java</title>
+  <link rel="stylesheet" th:href="@{/css/style.css(v=2.0)}"/>
+</head>
+<body>
+<div class="app-window">
+  <!-- Window Titlebar -->
+  <div class="titlebar">
+    <div class="window-controls">
+      <span class="control-btn close"></span>
+      <span class="control-btn minimize"></span>
+      <span class="control-btn maximize"></span>
+    </div>
+    <div class="app-title">CodeEdge Workspace — Companies.java</div>
+    <div class="menu-bar">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">Selection</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Go</span>
+      <span class="menu-item">Run</span>
+      <span class="menu-item">Terminal</span>
+      <span class="menu-item">Help</span>
+    </div>
+  </div>
+
+  <!-- Workspace Container -->
+  <div class="workspace-container">
+    <!-- Activity Bar -->
+    <aside class="activity-bar">
+      <div class="activity-top">
+        <a href="/" class="activity-btn" title="Dashboard">
+          <span class="icon">📊</span>
+        </a>
+        <a href="/problems" class="activity-btn" title="Problems Explorer">
+          <span class="icon">🧩</span>
+        </a>
+        <a href="/interview" class="activity-btn" title="Mock Interview">
+          <span class="icon">🎯</span>
+        </a>
+        <a href="/companies" class="activity-btn active" title="Companies Bank">
+          <span class="icon">🏢</span>
+        </a>
+      </div>
+      <div class="activity-bottom">
+        <a href="/swagger-ui.html" target="_blank" class="activity-btn" title="API Docs">
+          <span class="icon">📖</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Explorer Panel -->
+    <aside class="side-panel">
+      <div class="panel-header">
+        <span class="panel-title">EXPLORER</span>
+        <span class="panel-subtitle">CODEEDGE [WORKSPACE]</span>
+      </div>
+      <div class="explorer-tree">
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▼</span> <span class="folder-icon">📂</span> src/main/java
+          </div>
+          <div class="tree-children">
+            <div class="tree-row">
+              <span>☕</span> <a href="/">Dashboard.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/problems">Problems.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/interview">MockInterview.java</a>
+            </div>
+            <div class="tree-row active">
+              <span>☕</span> <a href="/companies">Companies.java</a>
+            </div>
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▶</span> <span class="folder-icon">📂</span> resources/static
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span>📄</span> <a href="/swagger-ui.html" target="_blank">api-spec.yaml</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Editor Pane -->
+    <main class="editor-pane">
+      <!-- Tabs Bar -->
+      <div class="tabs-bar">
+        <div class="tab">
+          <span class="tab-icon text-purple">☕</span>
+          <a href="/">Dashboard.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-yellow">☕</span>
+          <a href="/problems">Problems.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-cyan">☕</span>
+          <a href="/interview">MockInterview.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab active">
+          <span class="tab-icon text-green">☕</span>
+          <a href="/companies">Companies.java</a>
+          <span class="tab-close">×</span>
+        </div>
+      </div>
+
+      <!-- Breadcrumbs Bar -->
+      <div class="breadcrumbs-bar">
+        <div class="crumb">codeedge</div>
+        <span class="sep">/</span>
+        <div class="crumb">src</div>
+        <span class="sep">/</span>
+        <div class="crumb">main</div>
+        <span class="sep">/</span>
+        <div class="crumb">controllers</div>
+        <span class="sep">/</span>
+        <div class="crumb text-active">Companies.java</div>
+      </div>
+
+      <!-- Scrollable Editor Content -->
+      <div class="editor-content-scroll">
+        <!-- Company Cards Grid View -->
+        <div th:if="${company == null}">
+          <div class="page-header animate-in">
+            <h1>🏢 Company Registry Indexes</h1>
+            <p>Target specific company interview pipelines, CTC details, rounds, and curated DSA banks</p>
+          </div>
+
+          <div class="company-grid animate-in delay-1">
+            <a th:each="c : ${companies}" class="company-card card-glow"
+               th:href="@{/companies/{name}(name=${c.name})}">
+              <div class="company-emoji" th:text="${c.logo}"></div>
+              <h3 th:text="${c.name}"></h3>
+              <div class="difficulty" th:text="'Pipeline Difficulty: ' + ${c.difficulty}"></div>
+              <p style="font-size:11px;color:var(--muted2);margin-bottom:8px" th:text="${c.description}"></p>
+              <div class="package" th:text="'💰 package_est: ' + ${c.avgPackage}"></div>
+              <div class="rounds-list">
+                <span class="round-badge" th:each="r : ${c.rounds}" th:text="${r}"></span>
+              </div>
+              <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:4px">
+                <span style="font-size:10px;color:var(--muted)">Focus: </span>
+                <span class="company-tag" th:each="fa : ${c.focusAreas}" th:text="${fa}"></span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company Detail View -->
+        <div th:if="${company != null}" class="animate-in">
+          <div style="margin-bottom:12px">
+            <a href="/companies" class="btn btn-ghost btn-sm">← Back to Registry</a>
+          </div>
+
+          <div class="card" style="margin-bottom:16px">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+              <span style="font-size:36px" th:text="${company.logo}"></span>
+              <div>
+                <h2 style="font-size:18px;font-weight:700;color:var(--text-active)" th:text="${company.name}"></h2>
+                <div style="color:var(--muted2);font-size:12px" th:text="${company.description}"></div>
+                <div style="color:var(--green);font-family:'Fira Code', monospace;font-weight:600;font-size:12px;margin-top:2px" th:text="'💰 package_est: ' + ${company.avgPackage}"></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:12px">
+              <div>
+                <div style="font-size:10px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Pipeline Rounds</div>
+                <div class="rounds-list">
+                  <span class="round-badge" th:each="r : ${company.rounds}" th:text="${r}"></span>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:10px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.3px">Core Focus Areas</div>
+                <div style="display:flex;gap:4px;flex-wrap:wrap">
+                  <span class="company-tag" th:each="fa : ${company.focusAreas}" th:text="${fa}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title">
+              🧩 Problem Registry for <span th:text="${company.name}"></span>
+              (<span th:text="${#lists.size(problems)}">0</span> keys,
+               <span th:text="${solvedCount}" style="color:var(--green)">0</span> solved)
+            </div>
+            <div th:if="${#lists.isEmpty(problems)}" class="empty-state">
+              <div class="empty-icon">🔍</div>
+              <p>No tagged problem keys compiled for this pipeline.</p>
+            </div>
+            <div class="table-wrap" th:if="${!#lists.isEmpty(problems)}">
+              <table class="problem-table">
+                <thead>
+                  <tr>
+                    <th>#</th><th>Title</th><th>Topic</th><th>Difficulty</th><th>Acceptance</th><th>Status</th><th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="company-problems-body">
+                  <tr th:each="p,i : ${problems}" th:class="${p.solved} ? 'solved-row' : ''">
+                    <td style="color:var(--muted);font-family:'Fira Code', monospace;font-size:11px" th:text="${i.count}"></td>
+                    <td>
+                      <a class="title-link" th:href="${p.leetcodeLink}" target="_blank" th:text="${p.title}"></a>
+                      <div th:if="${p.hint}" style="font-size:10px;color:var(--muted);margin-top:2px" th:text="'💡 ' + ${p.hint}"></div>
+                    </td>
+                    <td style="color:var(--muted2)" th:text="${p.topic.displayName}"></td>
+                    <td>
+                      <span th:class="'badge badge-' + ${#strings.toLowerCase(p.difficulty.name())}"
+                            th:text="${p.difficulty}"></span>
+                    </td>
+                    <td style="font-family:'Fira Code', monospace;font-size:11px;color:var(--muted)" th:text="${p.acceptanceRate != null ? p.acceptanceRate + '%' : '—'}"></td>
+                    <td>
+                      <span th:if="${p.solved}" class="badge badge-solved">✓ Solved</span>
+                      <span th:unless="${p.solved}" class="badge badge-unsolved">Unsolved</span>
+                    </td>
+                    <td>
+                      <button th:if="${!p.solved}" th:onclick="'toggleSolve(' + ${p.id} + ', false)'"
+                              class="btn btn-success btn-sm">✓ Solve</button>
+                      <button th:if="${p.solved}" th:onclick="'toggleSolve(' + ${p.id} + ', true)'"
+                              class="btn btn-ghost btn-sm">Unmark</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Status Bar -->
+  <footer class="status-bar">
+    <div class="status-left">
+      <span class="status-indicator live">Ready</span>
+      <span class="status-item"><span style="color:rgba(255,255,255,0.7)"></span> main</span>
+      <span class="status-item">Spring Boot v3.2.5</span>
+      <span class="status-item">H2: Connected</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item" th:if="${company == null}" th:text="${#lists.size(companies) + ' Companies Registry Keys'}">0 Companies</span>
+      <span class="status-item" th:if="${company != null}" th:text="${company.name + ' Active Details'}">Details</span>
+      <span class="status-item">Java (JDK 17)</span>
+      <span class="status-item">UTF-8</span>
+    </div>
+  </footer>
+</div>
+
+<script th:src="@{/js/app.js(v=2.0)}"></script>
+</body>
+</html>

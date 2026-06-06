@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CodeEdge — Dashboard.java</title>
+  <link rel="stylesheet" th:href="@{/css/style.css(v=2.0)}"/>
+</head>
+<body>
+<div class="app-window">
+  <!-- Window Titlebar -->
+  <div class="titlebar">
+    <div class="window-controls">
+      <span class="control-btn close"></span>
+      <span class="control-btn minimize"></span>
+      <span class="control-btn maximize"></span>
+    </div>
+    <div class="app-title">CodeEdge Workspace — Dashboard.java</div>
+    <div class="menu-bar">
+      <span class="menu-item">File</span>
+      <span class="menu-item">Edit</span>
+      <span class="menu-item">Selection</span>
+      <span class="menu-item">View</span>
+      <span class="menu-item">Go</span>
+      <span class="menu-item">Run</span>
+      <span class="menu-item">Terminal</span>
+      <span class="menu-item">Help</span>
+    </div>
+  </div>
+
+  <!-- Workspace Container -->
+  <div class="workspace-container">
+    <!-- Activity Bar -->
+    <aside class="activity-bar">
+      <div class="activity-top">
+        <a href="/" class="activity-btn active" title="Dashboard">
+          <span class="icon">📊</span>
+        </a>
+        <a href="/problems" class="activity-btn" title="Problems Explorer">
+          <span class="icon">🧩</span>
+        </a>
+        <a href="/interview" class="activity-btn" title="Mock Interview">
+          <span class="icon">🎯</span>
+        </a>
+        <a href="/companies" class="activity-btn" title="Companies Bank">
+          <span class="icon">🏢</span>
+        </a>
+      </div>
+      <div class="activity-bottom">
+        <a href="/swagger-ui.html" target="_blank" class="activity-btn" title="API Docs">
+          <span class="icon">📖</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Explorer Panel -->
+    <aside class="side-panel">
+      <div class="panel-header">
+        <span class="panel-title">EXPLORER</span>
+        <span class="panel-subtitle">CODEEDGE [WORKSPACE]</span>
+      </div>
+      <div class="explorer-tree">
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▼</span> <span class="folder-icon">📂</span> src/main/java
+          </div>
+          <div class="tree-children">
+            <div class="tree-row active">
+              <span>☕</span> <a href="/">Dashboard.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/problems">Problems.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/interview">MockInterview.java</a>
+            </div>
+            <div class="tree-row">
+              <span>☕</span> <a href="/companies">Companies.java</a>
+            </div>
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span class="chevron">▶</span> <span class="folder-icon">📂</span> resources/static
+          </div>
+        </div>
+        <div class="tree-item">
+          <div class="tree-row">
+            <span>📄</span> <a href="/swagger-ui.html" target="_blank">api-spec.yaml</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Editor Pane -->
+    <main class="editor-pane">
+      <!-- Tabs Bar -->
+      <div class="tabs-bar">
+        <div class="tab active">
+          <span class="tab-icon text-purple">☕</span>
+          <a href="/">Dashboard.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-yellow">☕</span>
+          <a href="/problems">Problems.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-cyan">☕</span>
+          <a href="/interview">MockInterview.java</a>
+          <span class="tab-close">×</span>
+        </div>
+        <div class="tab">
+          <span class="tab-icon text-green">☕</span>
+          <a href="/companies">Companies.java</a>
+          <span class="tab-close">×</span>
+        </div>
+      </div>
+
+      <!-- Breadcrumbs Bar -->
+      <div class="breadcrumbs-bar">
+        <div class="crumb">codeedge</div>
+        <span class="sep">/</span>
+        <div class="crumb">src</div>
+        <span class="sep">/</span>
+        <div class="crumb">main</div>
+        <span class="sep">/</span>
+        <div class="crumb">controllers</div>
+        <span class="sep">/</span>
+        <div class="crumb text-active">Dashboard.java</div>
+      </div>
+
+      <!-- Scrollable Editor Content -->
+      <div class="editor-content-scroll">
+        <div class="page-header animate-in">
+          <h1>📊 SDE Placement Workspace Overview</h1>
+          <p>Real-time analytics and interview preparation tracking metrics</p>
+        </div>
+
+        <!-- Top Stats -->
+        <div class="stats-grid">
+          <div class="card stat-card animate-in delay-1 card-glow">
+            <div class="icon-wrap bg-purple"><span class="text-purple">🧩</span></div>
+            <div class="label">Total Solved</div>
+            <div class="value text-purple" th:text="${solvedProblems}">0</div>
+            <div class="sub" th:text="'of ' + ${totalProblems} + ' problems'">of 0</div>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-purple" data-width="0" th:attr="data-width=${progressPercent}" style="width:0"></div></div>
+            </div>
+          </div>
+          <div class="card stat-card animate-in delay-2 card-glow">
+            <div class="icon-wrap bg-green"><span class="text-green">🟢</span></div>
+            <div class="label">Easy Solved</div>
+            <div class="value text-green" th:text="${easySolved}">0</div>
+            <div class="sub" th:text="'of ' + ${easyTotal} + ' easy'"></div>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-green" data-width="0"
+                th:attr="data-width=${easyTotal > 0 ? (easySolved * 100 / easyTotal) : 0}" style="width:0"></div></div>
+            </div>
+          </div>
+          <div class="card stat-card animate-in delay-3 card-glow">
+            <div class="icon-wrap bg-yellow"><span class="text-yellow">🟡</span></div>
+            <div class="label">Medium Solved</div>
+            <div class="value text-yellow" th:text="${medSolved}">0</div>
+            <div class="sub" th:text="'of ' + ${medTotal} + ' medium'"></div>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-yellow" data-width="0"
+                th:attr="data-width=${medTotal > 0 ? (medSolved * 100 / medTotal) : 0}" style="width:0"></div></div>
+            </div>
+          </div>
+          <div class="card stat-card animate-in delay-4 card-glow">
+            <div class="icon-wrap bg-red"><span class="text-red">🔴</span></div>
+            <div class="label">Hard Solved</div>
+            <div class="value text-red" th:text="${hardSolved}">0</div>
+            <div class="sub" th:text="'of ' + ${hardTotal} + ' hard'"></div>
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-red" data-width="0"
+                th:attr="data-width=${hardTotal > 0 ? (hardSolved * 100 / hardTotal) : 0}" style="width:0"></div></div>
+            </div>
+          </div>
+          <div class="card stat-card animate-in delay-1">
+            <div class="icon-wrap bg-cyan"><span class="text-cyan">📅</span></div>
+            <div class="label">Mock Interviews</div>
+            <div class="value text-cyan" th:text="${completedInterviews}">0</div>
+            <div class="sub" th:text="${scheduledInterviews} + ' scheduled'"></div>
+          </div>
+          <div class="card stat-card animate-in delay-2">
+            <div class="icon-wrap bg-purple"><span class="text-purple">⭐</span></div>
+            <div class="label">Avg Score</div>
+            <div class="value text-purple" th:text="${avgInterviewScore} + '%'">—</div>
+            <div class="sub">across completed sessions</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <!-- Topic Progress -->
+          <div class="card animate-in">
+            <div class="section-title">📚 Topic Progress Rates</div>
+            <div class="topic-grid">
+              <div class="topic-item" th:each="stat : ${topicStats}">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span class="topic-name" th:text="${stat.name}"></span>
+                  <span class="topic-count" th:text="${stat.solved} + '/' + ${stat.total}"></span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill fill-purple" data-width="0" th:attr="data-width=${stat.percent}" style="width:0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Interviews -->
+          <div class="card animate-in delay-2">
+            <div class="section-title">🎯 Completed Mock Reports</div>
+            <div th:if="${#lists.isEmpty(recentInterviews)}" class="empty-state">
+              <div class="empty-icon">📋</div>
+              <p>No completed interviews yet.<br/><a href="/interview" style="color:var(--accent)">Schedule one →</a></p>
+            </div>
+            <div th:each="iv : ${recentInterviews}" style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)">
+              <div th:class="'score-circle ' + (${iv.score} >= 70 ? 'score-high' : (${iv.score} >= 40 ? 'score-mid' : 'score-low'))"
+                   th:text="${iv.score} + '%'"></div>
+              <div style="flex:1">
+                <div style="font-size:12px;font-weight:600;color:var(--text-active)" th:text="${iv.title}"></div>
+                <div style="font-size:10px;color:var(--muted)" th:text="${iv.targetCompany} + ' • ' + ${iv.durationMinutes} + ' min'"></div>
+              </div>
+            </div>
+            <div style="margin-top:12px"><a href="/interview" class="btn btn-ghost btn-sm">View all sessions →</a></div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card animate-in">
+          <div class="section-title">⚡ Quick Actions</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="/problems?difficulty=EASY&solved=false" class="btn btn-success">🟢 Solve an Easy</a>
+            <a href="/problems?difficulty=MEDIUM&solved=false" class="btn btn-ghost">🟡 Tackle a Medium</a>
+            <a href="/problems?difficulty=HARD&solved=false" class="btn btn-danger">🔴 Attempt a Hard</a>
+            <a href="/interview" class="btn btn-primary">🎯 Schedule Interview</a>
+            <a href="/companies" class="btn btn-ghost">🏢 Browse Companies</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Status Bar -->
+  <footer class="status-bar">
+    <div class="status-left">
+      <span class="status-indicator live">Ready</span>
+      <span class="status-item"><span style="color:rgba(255,255,255,0.7)"></span> main</span>
+      <span class="status-item">Spring Boot v3.2.5</span>
+      <span class="status-item">H2: Connected</span>
+    </div>
+    <div class="status-right">
+      <span class="status-item" th:text="${solvedProblems + '/' + totalProblems + ' Solved'}">0/0 Solved</span>
+      <span class="status-item">Java (JDK 17)</span>
+      <span class="status-item">UTF-8</span>
+    </div>
+  </footer>
+</div>
+
+<script th:src="@{/js/app.js(v=2.0)}"></script>
+</body>
+</html>

@@ -2,14 +2,14 @@ services:
   - type: web
     name: codeedge-app
     env: docker
-    plan: starter
+    plan: free
     port: 8080
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:h2:file:/var/lib/codeedge/data/codeedgedb;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+        placeholder: "jdbc:postgresql://<host>:5432/<db_name>"
+      - key: SPRING_DATASOURCE_USERNAME
+        placeholder: "postgres"
+      - key: SPRING_DATASOURCE_PASSWORD
+        placeholder: "Your Supabase Password"
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
         value: update
-    disk:
-      name: codeedge-db-disk
-      mountPath: /var/lib/codeedge/data
-      sizeGB: 1

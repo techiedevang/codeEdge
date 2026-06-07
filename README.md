@@ -1,12 +1,13 @@
 # 🚀 CodeEdge
 
-**CodeEdge** is a premium, desktop-IDE styled campus placement and SDE interview preparation companion. Designed for SDE aspirants, it provides a comprehensive dashboard to track DSA problems, schedule & evaluate mock interviews, search company-specific interview pipelines, and manage study timelines inside a sleek, glassmorphic dark-themed editor interface.
+**CodeEdge** is a premium, desktop-IDE styled campus placement and SDE interview preparation companion. Designed for SDE aspirants, it provides a comprehensive multi-user workspace to track DSA problems, schedule & evaluate mock interviews, search company-specific interview pipelines, and manage study timelines inside a sleek, glassmorphic dark-themed editor interface.
 
 ---
 
 ## 🛠️ Tech Stack
 
 * **Backend Framework**: Java 17 + Spring Boot 3.2.5
+* **Security & Authentication**: Spring Security 6 + BCrypt Password Hashing
 * **Data Persistence**: MongoDB (via Spring Data MongoDB)
 * **Frontend Engine**: Thymeleaf Template Engine + Vanilla HTML5/CSS3 (Theme-agnostic variables)
 * **Interactive UI**: Native JavaScript (3D interactive constellation canvas, timer controls, modals)
@@ -17,19 +18,23 @@
 
 ## ✨ Key Features
 
-1. **Dashboard (`Dashboard.java`)**: 
-   * Real-time placement progress tracker (Solved vs Total metrics).
+1. **User Authentication & Session Management**:
+   * Secure user registration (`signup.html`) and login (`login.html`) forms themed as an IDE shell.
+   * Session security filters preventing unauthorized access to the SDE workspace.
+   * Multi-user isolation (metrics, solved problems, notes, and mock interview reports are mapped and saved specifically to your account).
+2. **Dashboard (`Dashboard.java`)**: 
+   * Real-time user placement progress tracker (Solved vs Total metrics).
    * DSA difficulty and topic-wise visual progress status.
    * Recent completed mock interview summaries.
-2. **DSA Problems Repository (`Problems.java`)**:
+3. **DSA Problems Repository (`Problems.java`)**:
    * Filter problems by Topic, Difficulty (Easy/Medium/Hard), and solved status.
    * Case-insensitive keyword search for titles and tags.
    * Quick-solve toggle to log completion times and custom approach notes.
-3. **Mock Interview Scheduler (`MockInterview.java`)**:
+4. **Mock Interview Scheduler (`MockInterview.java`)**:
    * Schedule upcoming interviews specifying target company, date, duration, and topics.
    * Live countdown timer tool mimicking real placement conditions.
    * Structured feedback card generator to input performance scores and critiques.
-4. **Company-Wise Question Browser (`Companies.java`)**:
+5. **Company-Wise Question Browser (`Companies.java`)**:
    * View tailored preparation cards for top tech companies (Amazon, Google, Microsoft, Uber, GS, Flipkart, Salesforce, Adobe).
    * Displays target recruitment rounds, focus areas, package range, and tagged problems.
 
@@ -74,7 +79,7 @@ MONGODB_URI=mongodb://localhost:27017/codeedge
    mvn spring-boot:run
    ```
 3. Open your browser and navigate to:
-   * **Application Homepage**: [http://localhost:8080](http://localhost:8080)
+   * **Application Homepage**: [http://localhost:8080](http://localhost:8080) (You will be automatically redirected to `/login` to register your account)
    * **Swagger API Docs**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 ---

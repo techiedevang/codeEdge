@@ -3,7 +3,6 @@ services:
     name: codeedge-app
     env: docker
     plan: free
-    port: 8080
     envVars:
       - key: MONGODB_URI
         placeholder: "mongodb+srv://<username>:<password>@cluster.mongodb.net/codeedge"

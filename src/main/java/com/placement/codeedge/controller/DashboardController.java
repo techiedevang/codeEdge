@@ -18,7 +18,6 @@ public class DashboardController {
 
     private final ProblemService problemService;
     private final InterviewService interviewService;
-    private final CompanyService companyService;
 
     @GetMapping("/")
     public String dashboard(Model model) {

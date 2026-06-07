@@ -5,4 +5,4 @@ services:
     plan: free
     envVars:
       - key: MONGODB_URI
-        placeholder: "mongodb+srv://<username>:<password>@cluster.mongodb.net/codeedge"
+        sync: false

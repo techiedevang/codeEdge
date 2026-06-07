@@ -14,3 +14,6 @@ Thumbs.db
 
 # Local H2 Database
 /data/
+
+# Environment configurations
+.env

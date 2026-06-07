@@ -50,7 +50,7 @@ public class MockInterviewController {
 
     @PostMapping("/interview/{id}/complete")
     public String completeInterview(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestParam Integer score,
             @RequestParam(required = false, defaultValue = "0") Integer attempted,
             @RequestParam(required = false, defaultValue = "0") Integer solved,
@@ -62,7 +62,7 @@ public class MockInterviewController {
     }
 
     @PostMapping("/interview/{id}/cancel")
-    public String cancelInterview(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String cancelInterview(@PathVariable String id, RedirectAttributes redirectAttributes) {
         interviewService.cancel(id);
         redirectAttributes.addFlashAttribute("success", "Interview cancelled.");
         return "redirect:/interview";
@@ -80,7 +80,7 @@ public class MockInterviewController {
     @ResponseBody
     @Operation(summary = "Mark interview as completed with score")
     public ResponseEntity<MockInterview> completeApi(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestParam Integer score,
             @RequestParam(required = false) Integer attempted,
             @RequestParam(required = false) Integer solved,

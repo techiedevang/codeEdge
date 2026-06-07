@@ -5,11 +5,5 @@ services:
     plan: free
     port: 8080
     envVars:
-      - key: SPRING_DATASOURCE_URL
-        placeholder: "jdbc:postgresql://<host>:5432/<db_name>"
-      - key: SPRING_DATASOURCE_USERNAME
-        placeholder: "postgres"
-      - key: SPRING_DATASOURCE_PASSWORD
-        placeholder: "Your Supabase Password"
-      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
-        value: update
+      - key: MONGODB_URI
+        placeholder: "mongodb+srv://<username>:<password>@cluster.mongodb.net/codeedge"

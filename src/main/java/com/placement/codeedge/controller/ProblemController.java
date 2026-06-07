@@ -61,7 +61,7 @@ public class ProblemController {
     @GetMapping("/api/problems/{id}")
     @ResponseBody
     @Operation(summary = "Get problem by ID")
-    public ResponseEntity<Problem> getById(@PathVariable Long id) {
+    public ResponseEntity<Problem> getById(@PathVariable String id) {
         return problemService.getById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -71,7 +71,7 @@ public class ProblemController {
     @ResponseBody
     @Operation(summary = "Mark a problem as solved")
     public ResponseEntity<Problem> markSolved(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestParam(required = false) Integer timeTaken,
             @RequestParam(required = false) String notes) {
         try {
@@ -84,7 +84,7 @@ public class ProblemController {
     @PostMapping("/api/problems/{id}/unsolved")
     @ResponseBody
     @Operation(summary = "Mark a problem as unsolved")
-    public ResponseEntity<Problem> markUnsolved(@PathVariable Long id) {
+    public ResponseEntity<Problem> markUnsolved(@PathVariable String id) {
         try {
             return ResponseEntity.ok(problemService.markUnsolved(id));
         } catch (RuntimeException e) {
@@ -96,7 +96,7 @@ public class ProblemController {
     @ResponseBody
     @Operation(summary = "Update notes for a problem")
     public ResponseEntity<Problem> updateNotes(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestBody Map<String, String> body) {
         try {
             return ResponseEntity.ok(problemService.updateNotes(id, body.get("notes")));

@@ -252,7 +252,7 @@
                   <td>
                     <div style="display:flex;gap:4px">
                       <button th:if="${iv.status.name() == 'SCHEDULED' or iv.status.name() == 'IN_PROGRESS'}"
-                              th:onclick="'openCompleteModal(' + ${iv.id} + ')'"
+                              th:onclick="'openCompleteModal(\'' + ${iv.id} + '\')'"
                               class="btn btn-success btn-sm">✓ Complete</button>
                       <form th:if="${iv.status.name() == 'SCHEDULED'}"
                             th:action="'/interview/' + ${iv.id} + '/cancel'" method="post" style="display:inline">

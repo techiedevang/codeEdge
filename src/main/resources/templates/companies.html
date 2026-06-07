@@ -225,9 +225,9 @@
                       <span th:unless="${p.solved}" class="badge badge-unsolved">Unsolved</span>
                     </td>
                     <td>
-                      <button th:if="${!p.solved}" th:onclick="'toggleSolve(' + ${p.id} + ', false)'"
+                      <button th:if="${!p.solved}" th:onclick="'toggleSolve(\'' + ${p.id} + '\', false)'"
                               class="btn btn-success btn-sm">✓ Solve</button>
-                      <button th:if="${p.solved}" th:onclick="'toggleSolve(' + ${p.id} + ', true)'"
+                      <button th:if="${p.solved}" th:onclick="'toggleSolve(\'' + ${p.id} + '\', true)'"
                               class="btn btn-ghost btn-sm">Unmark</button>
                     </td>
                   </tr>

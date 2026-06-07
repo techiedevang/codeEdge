@@ -3,15 +3,13 @@ package com.placement.codeedge.repository;
 import com.placement.codeedge.model.Problem;
 import com.placement.codeedge.model.enums.Difficulty;
 import com.placement.codeedge.model.enums.Topic;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ProblemRepository extends JpaRepository<Problem, Long> {
+public interface ProblemRepository extends MongoRepository<Problem, String> {
 
     List<Problem> findByTopic(Topic topic);
 
@@ -37,9 +35,7 @@ public interface ProblemRepository extends JpaRepository<Problem, Long> {
 
     long countByTopicAndSolved(Topic topic, boolean solved);
 
-    @Query("SELECT p FROM Problem p JOIN p.companies c WHERE LOWER(c) = LOWER(:company)")
-    List<Problem> findByCompany(@Param("company") String company);
+    List<Problem> findByCompaniesContainingIgnoreCase(String company);
 
-    @Query("SELECT p FROM Problem p WHERE LOWER(p.title) LIKE LOWER(CONCAT('%', :keyword, '%'))")
-    List<Problem> searchByTitle(@Param("keyword") String keyword);
+    List<Problem> findByTitleContainingIgnoreCase(String keyword);
 }

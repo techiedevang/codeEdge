@@ -6,7 +6,6 @@ import com.placement.codeedge.model.enums.Topic;
 import com.placement.codeedge.repository.MockInterviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -24,11 +23,10 @@ public class InterviewService {
         return interviewRepository.findAllByOrderByScheduledTimeDesc();
     }
 
-    public Optional<MockInterview> getById(Long id) {
+    public Optional<MockInterview> getById(String id) {
         return interviewRepository.findById(id);
     }
 
-    @Transactional
     public MockInterview schedule(String title, String targetCompany,
                                   LocalDateTime scheduledTime, Integer durationMinutes,
                                   String[] topicNames) {
@@ -50,8 +48,7 @@ public class InterviewService {
         return interviewRepository.save(interview);
     }
 
-    @Transactional
-    public MockInterview complete(Long id, Integer score, Integer attempted,
+    public MockInterview complete(String id, Integer score, Integer attempted,
                                   Integer solved, String feedback) {
         MockInterview interview = interviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Interview not found: " + id));
@@ -63,8 +60,7 @@ public class InterviewService {
         return interviewRepository.save(interview);
     }
 
-    @Transactional
-    public MockInterview cancel(Long id) {
+    public MockInterview cancel(String id) {
         MockInterview interview = interviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Interview not found: " + id));
         interview.setStatus(InterviewStatus.CANCELLED);

@@ -2,16 +2,15 @@ package com.placement.codeedge.model;
 
 import com.placement.codeedge.model.enums.InterviewStatus;
 import com.placement.codeedge.model.enums.Topic;
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "mock_interviews")
+@Document(collection = "mock_interviews")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,18 +18,12 @@ import java.util.List;
 public class MockInterview {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @Column(nullable = false)
     private String title;
 
     private String targetCompany;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "interview_topics", joinColumns = @JoinColumn(name = "interview_id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "topic")
     @Builder.Default
     private List<Topic> focusTopics = new ArrayList<>();
 
@@ -41,16 +34,14 @@ public class MockInterview {
 
     private Integer score;
 
-    @Column(length = 1000)
     private String feedback;
 
-    @Enumerated(EnumType.STRING)
     @Builder.Default
     private InterviewStatus status = InterviewStatus.SCHEDULED;
 
     private Integer questionsAttempted;
     private Integer questionsSolved;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

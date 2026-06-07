@@ -6,7 +6,6 @@ import com.placement.codeedge.model.enums.Topic;
 import com.placement.codeedge.repository.ProblemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,7 +24,7 @@ public class ProblemService {
     public List<Problem> getFiltered(String topic, String difficulty, String solved, String search) {
         // If there's a search keyword, filter by title first
         if (search != null && !search.isBlank()) {
-            return problemRepository.searchByTitle(search.trim());
+            return problemRepository.findByTitleContainingIgnoreCase(search.trim());
         }
 
         Topic t = (topic != null && !topic.isBlank() && !topic.equals("ALL"))
@@ -46,12 +45,11 @@ public class ProblemService {
         return problemRepository.findAll();
     }
 
-    public Optional<Problem> getById(Long id) {
+    public Optional<Problem> getById(String id) {
         return problemRepository.findById(id);
     }
 
-    @Transactional
-    public Problem markSolved(Long id, Integer timeTaken, String notes) {
+    public Problem markSolved(String id, Integer timeTaken, String notes) {
         Problem p = problemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Problem not found: " + id));
         p.setSolved(true);
@@ -61,8 +59,7 @@ public class ProblemService {
         return problemRepository.save(p);
     }
 
-    @Transactional
-    public Problem markUnsolved(Long id) {
+    public Problem markUnsolved(String id) {
         Problem p = problemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Problem not found: " + id));
         p.setSolved(false);
@@ -71,8 +68,7 @@ public class ProblemService {
         return problemRepository.save(p);
     }
 
-    @Transactional
-    public Problem updateNotes(Long id, String notes) {
+    public Problem updateNotes(String id, String notes) {
         Problem p = problemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Problem not found: " + id));
         p.setNotes(notes);
@@ -80,7 +76,7 @@ public class ProblemService {
     }
 
     public List<Problem> getByCompany(String company) {
-        return problemRepository.findByCompany(company);
+        return problemRepository.findByCompaniesContainingIgnoreCase(company);
     }
 
     public long countSolved() {

@@ -83,7 +83,7 @@ function filterCompanyProblems(company) {
           <td><span class="badge badge-${p.difficulty.toLowerCase()}">${p.difficulty}</span></td>
           <td>${p.topic.replace(/_/g,' ')}</td>
           <td><span class="badge ${p.solved ? 'badge-solved' : 'badge-unsolved'}">${p.solved ? '✓ Solved' : 'Unsolved'}</span></td>
-          <td><button class="btn btn-sm ${p.solved ? 'btn-danger' : 'btn-success'}" onclick="toggleSolve(${p.id}, ${p.solved})">
+          <td><button class="btn btn-sm ${p.solved ? 'btn-danger' : 'btn-success'}" onclick="toggleSolve('${p.id}', ${p.solved})">
             ${p.solved ? 'Unmark' : 'Solve'}
           </button></td>
         </tr>`).join('');

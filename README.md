@@ -84,13 +84,3 @@ MONGODB_URI=mongodb://localhost:27017/codeedge
 
 ---
 
-## ☁️ Deploying to Render (NoSQL Cloud Build)
-
-This project has been pre-configured with a **Dockerfile** and a **Render Blueprint (`render.yaml`)** for deployment.
-
-1. Push your repository to your own GitHub account.
-2. Log into your [Render Dashboard](https://dashboard.render.com).
-3. Click **New +** -> **Blueprint**.
-4. Connect your GitHub repository.
-5. In the configuration page, paste your MongoDB Atlas connection string into the **`MONGODB_URI`** variable field.
-6. Click **Apply**. Render will automatically build the container and deploy the app!

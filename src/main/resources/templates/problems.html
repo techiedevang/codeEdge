@@ -50,6 +50,13 @@
         <a href="/swagger-ui.html" target="_blank" class="activity-btn" title="API Docs">
           <span class="icon">📖</span>
         </a>
+        <span class="activity-btn" th:title="'Logged in as ' + ${#authentication.name}">
+          <span class="icon">👤</span>
+        </span>
+        <form th:action="@{/logout}" method="post" id="logoutForm" style="display:none;"></form>
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="activity-btn" title="Logout">
+          <span class="icon">🚪</span>
+        </a>
       </div>
     </aside>
 
@@ -239,7 +246,7 @@
       <span class="status-indicator live">Ready</span>
       <span class="status-item"><span style="color:rgba(255,255,255,0.7)"></span> main</span>
       <span class="status-item">Spring Boot v3.2.5</span>
-      <span class="status-item">H2: Connected</span>
+      <span class="status-item">MongoDB: Connected</span>
     </div>
     <div class="status-right">
       <span class="status-item" th:text="${solvedCount + '/' + totalCount + ' Solved'}">0/0 Solved</span>

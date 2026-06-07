@@ -2,12 +2,16 @@ package com.placement.codeedge.controller;
 
 import com.placement.codeedge.model.Problem;
 import com.placement.codeedge.service.CompanyService;
+import com.placement.codeedge.service.CustomUserDetailsService.CustomUserDetails;
 import com.placement.codeedge.service.ProblemService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -26,10 +30,13 @@ public class CompanyController {
     }
 
     @GetMapping("/companies/{name}")
-    public String companyDetail(@PathVariable String name, Model model) {
+    public String companyDetail(
+            @PathVariable String name,
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            Model model) {
         companyService.getCompanyByName(name).ifPresent(c -> {
             model.addAttribute("company", c);
-            List<Problem> problems = problemService.getByCompany(name);
+            List<Problem> problems = problemService.getByCompany(userDetails.getUser(), name);
             model.addAttribute("problems", problems);
             model.addAttribute("solvedCount", problems.stream().filter(Problem::isSolved).count());
         });
@@ -44,7 +51,9 @@ public class CompanyController {
 
     @GetMapping("/api/companies/{name}/problems")
     @ResponseBody
-    public List<Problem> getCompanyProblems(@PathVariable String name) {
-        return problemService.getByCompany(name);
+    public List<Problem> getCompanyProblems(
+            @PathVariable String name,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        return problemService.getByCompany(userDetails.getUser(), name);
     }
 }

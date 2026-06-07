@@ -3,12 +3,14 @@ package com.placement.codeedge.controller;
 import com.placement.codeedge.model.MockInterview;
 import com.placement.codeedge.model.enums.InterviewStatus;
 import com.placement.codeedge.model.enums.Topic;
+import com.placement.codeedge.service.CustomUserDetailsService.CustomUserDetails;
 import com.placement.codeedge.service.InterviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +28,13 @@ public class MockInterviewController {
 
     // ─── MVC ──────────────────────────────────────────────────────────────
     @GetMapping("/interview")
-    public String interviewPage(Model model) {
-        model.addAttribute("interviews", interviewService.getAll());
+    public String interviewPage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        String userId = userDetails.getId();
+        model.addAttribute("interviews", interviewService.getAll(userId));
         model.addAttribute("topics", Topic.values());
-        model.addAttribute("scheduledCount", interviewService.countByStatus(InterviewStatus.SCHEDULED));
-        model.addAttribute("completedCount", interviewService.countByStatus(InterviewStatus.COMPLETED));
-        model.addAttribute("avgScore", String.format("%.0f", interviewService.averageScore()));
+        model.addAttribute("scheduledCount", interviewService.countByStatus(userId, InterviewStatus.SCHEDULED));
+        model.addAttribute("completedCount", interviewService.countByStatus(userId, InterviewStatus.COMPLETED));
+        model.addAttribute("avgScore", String.format("%.0f", interviewService.averageScore(userId)));
         return "interview";
     }
 
@@ -42,8 +45,9 @@ public class MockInterviewController {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime scheduledTime,
             @RequestParam(required = false, defaultValue = "60") Integer durationMinutes,
             @RequestParam(required = false) String[] topics,
+            @AuthenticationPrincipal CustomUserDetails userDetails,
             RedirectAttributes redirectAttributes) {
-        interviewService.schedule(title, targetCompany, scheduledTime, durationMinutes, topics);
+        interviewService.schedule(userDetails.getId(), title, targetCompany, scheduledTime, durationMinutes, topics);
         redirectAttributes.addFlashAttribute("success", "Interview scheduled successfully!");
         return "redirect:/interview";
     }
@@ -72,8 +76,8 @@ public class MockInterviewController {
     @GetMapping("/api/interviews")
     @ResponseBody
     @Operation(summary = "Get all mock interviews")
-    public List<MockInterview> getAllInterviews() {
-        return interviewService.getAll();
+    public List<MockInterview> getAllInterviews(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        return interviewService.getAll(userDetails.getId());
     }
 
     @PostMapping("/api/interviews/{id}/complete")

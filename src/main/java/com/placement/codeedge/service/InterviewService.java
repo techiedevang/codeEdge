@@ -20,24 +20,25 @@ public class InterviewService {
 
     private final MockInterviewRepository interviewRepository;
 
-    public List<MockInterview> getAll() {
-        return interviewRepository.findAllByOrderByScheduledTimeDesc();
+    public List<MockInterview> getAll(String userId) {
+        return interviewRepository.findByUserIdOrderByScheduledTimeDesc(userId);
     }
 
     public Optional<MockInterview> getById(String id) {
         return interviewRepository.findById(id);
     }
 
-    public MockInterview schedule(String title, String targetCompany,
-                                  LocalDateTime scheduledTime, Integer durationMinutes,
-                                  String[] topicNames) {
+    public MockInterview schedule(String userId, String title, String targetCompany,
+                                   LocalDateTime scheduledTime, Integer durationMinutes,
+                                   String[] topicNames) {
         List<Topic> topics = (topicNames != null)
-                ? Arrays.stream(topicNames)
-                    .map(Topic::valueOf)
-                    .collect(Collectors.toList())
-                : List.of();
+                 ? Arrays.stream(topicNames)
+                     .map(Topic::valueOf)
+                     .collect(Collectors.toList())
+                 : List.of();
 
         MockInterview interview = MockInterview.builder()
+                .userId(userId)
                 .title(title)
                 .targetCompany(targetCompany)
                 .scheduledTime(scheduledTime)
@@ -50,7 +51,7 @@ public class InterviewService {
     }
 
     public MockInterview complete(String id, Integer score, Integer attempted,
-                                  Integer solved, String feedback) {
+                                   Integer solved, String feedback) {
         MockInterview interview = interviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Interview not found: " + id));
         interview.setStatus(InterviewStatus.COMPLETED);
@@ -68,12 +69,12 @@ public class InterviewService {
         return interviewRepository.save(interview);
     }
 
-    public long countByStatus(InterviewStatus status) {
-        return interviewRepository.countByStatus(status);
+    public long countByStatus(String userId, InterviewStatus status) {
+        return interviewRepository.countByUserIdAndStatus(userId, status);
     }
 
-    public double averageScore() {
-        return interviewRepository.findByStatus(InterviewStatus.COMPLETED)
+    public double averageScore(String userId) {
+        return interviewRepository.findByUserIdAndStatus(userId, InterviewStatus.COMPLETED)
                 .stream()
                 .filter(i -> i.getScore() != null)
                 .mapToInt(MockInterview::getScore)

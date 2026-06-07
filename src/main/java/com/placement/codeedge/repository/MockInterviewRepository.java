@@ -17,4 +17,10 @@ public interface MockInterviewRepository extends MongoRepository<MockInterview, 
     List<MockInterview> findAllByOrderByScheduledTimeDesc();
 
     long countByStatus(InterviewStatus status);
+
+    List<MockInterview> findByUserIdOrderByScheduledTimeDesc(String userId);
+
+    List<MockInterview> findByUserIdAndStatus(String userId, InterviewStatus status);
+
+    long countByUserIdAndStatus(String userId, InterviewStatus status);
 }

@@ -35,15 +35,19 @@ public class Problem {
 
     private Double acceptanceRate;
 
+    @org.springframework.data.annotation.Transient
     @Builder.Default
     private boolean solved = false;
 
+    @org.springframework.data.annotation.Transient
     private String notes;
 
+    @org.springframework.data.annotation.Transient
     private Integer timeTakenMinutes;
 
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @org.springframework.data.annotation.Transient
     private LocalDateTime solvedAt;
 }

@@ -1,9 +1,12 @@
 package com.placement.codeedge.service;
 
 import com.placement.codeedge.model.Problem;
+import com.placement.codeedge.model.SolvedProblem;
+import com.placement.codeedge.model.User;
 import com.placement.codeedge.model.enums.Difficulty;
 import com.placement.codeedge.model.enums.Topic;
 import com.placement.codeedge.repository.ProblemRepository;
+import com.placement.codeedge.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,71 +20,125 @@ import java.util.Optional;
 public class ProblemService {
 
     private final ProblemRepository problemRepository;
+    private final UserRepository userRepository;
 
-    public List<Problem> getAll() {
-        return problemRepository.findAll();
+    private void populateTransientFields(Problem p, User user) {
+        if (p == null || user == null) return;
+        user.getSolvedProblems().stream()
+                .filter(sp -> sp.getProblemId().equals(p.getId()))
+                .findFirst()
+                .ifPresentOrElse(sp -> {
+                    p.setSolved(true);
+                    p.setNotes(sp.getNotes());
+                    p.setTimeTakenMinutes(sp.getTimeTakenMinutes());
+                    p.setSolvedAt(sp.getSolvedAt());
+                }, () -> {
+                    p.setSolved(false);
+                    p.setNotes(null);
+                    p.setTimeTakenMinutes(null);
+                    p.setSolvedAt(null);
+                });
     }
 
-    public List<Problem> getFiltered(String topic, String difficulty, String solved, String search) {
-        // If there's a search keyword, filter by title first
+    private void populateTransientFields(List<Problem> problems, User user) {
+        if (problems == null || user == null) return;
+        for (Problem p : problems) {
+            populateTransientFields(p, user);
+        }
+    }
+
+    public List<Problem> getAll(User user) {
+        List<Problem> list = problemRepository.findAll();
+        populateTransientFields(list, user);
+        return list;
+    }
+
+    public List<Problem> getFiltered(User user, String topic, String difficulty, String solved, String search) {
+        List<Problem> list;
         if (search != null && !search.isBlank()) {
-            return problemRepository.findByTitleContainingIgnoreCase(search.trim());
+            list = problemRepository.findByTitleContainingIgnoreCase(search.trim());
+        } else {
+            Topic t = (topic != null && !topic.isBlank() && !topic.equals("ALL"))
+                    ? Topic.valueOf(topic) : null;
+            Difficulty d = (difficulty != null && !difficulty.isBlank() && !difficulty.equals("ALL"))
+                    ? Difficulty.valueOf(difficulty) : null;
+
+            if (t != null && d != null) list = problemRepository.findByTopicAndDifficulty(t, d);
+            else if (t != null)         list = problemRepository.findByTopic(t);
+            else if (d != null)         list = problemRepository.findByDifficulty(d);
+            else                        list = problemRepository.findAll();
         }
 
-        Topic t = (topic != null && !topic.isBlank() && !topic.equals("ALL"))
-                ? Topic.valueOf(topic) : null;
-        Difficulty d = (difficulty != null && !difficulty.isBlank() && !difficulty.equals("ALL"))
-                ? Difficulty.valueOf(difficulty) : null;
-        Boolean s = (solved != null && !solved.isBlank() && !solved.equals("ALL"))
-                ? Boolean.valueOf(solved) : null;
+        populateTransientFields(list, user);
 
-        if (t != null && d != null && s != null) return problemRepository.findByTopicAndDifficultyAndSolved(t, d, s);
-        if (t != null && d != null)               return problemRepository.findByTopicAndDifficulty(t, d);
-        if (t != null && s != null)               return problemRepository.findByTopicAndSolved(t, s);
-        if (d != null && s != null)               return problemRepository.findByDifficultyAndSolved(d, s);
-        if (t != null)                            return problemRepository.findByTopic(t);
-        if (d != null)                            return problemRepository.findByDifficulty(d);
-        if (s != null)                            return problemRepository.findBySolved(s);
+        if (solved != null && !solved.isBlank() && !solved.equals("ALL")) {
+            boolean expectedSolved = Boolean.parseBoolean(solved);
+            list = list.stream().filter(p -> p.isSolved() == expectedSolved).toList();
+        }
 
-        return problemRepository.findAll();
+        return list;
     }
 
-    public Optional<Problem> getById(String id) {
-        return problemRepository.findById(id);
+    public Optional<Problem> getById(String id, User user) {
+        Optional<Problem> opt = problemRepository.findById(id);
+        opt.ifPresent(p -> populateTransientFields(p, user));
+        return opt;
     }
 
-    public Problem markSolved(String id, Integer timeTaken, String notes) {
+    public Problem markSolved(User user, String id, Integer timeTaken, String notes) {
         Problem p = problemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Problem not found: " + id));
-        p.setSolved(true);
-        p.setSolvedAt(LocalDateTime.now());
-        if (timeTaken != null) p.setTimeTakenMinutes(timeTaken);
-        if (notes != null && !notes.isBlank()) p.setNotes(notes);
-        return problemRepository.save(p);
+
+        user.getSolvedProblems().removeIf(sp -> sp.getProblemId().equals(id));
+
+        SolvedProblem sp = SolvedProblem.builder()
+                .problemId(id)
+                .notes(notes)
+                .timeTakenMinutes(timeTaken)
+                .solvedAt(LocalDateTime.now())
+                .build();
+        user.getSolvedProblems().add(sp);
+        userRepository.save(user);
+
+        populateTransientFields(p, user);
+        return p;
     }
 
-    public Problem markUnsolved(String id) {
+    public Problem markUnsolved(User user, String id) {
         Problem p = problemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Problem not found: " + id));
-        p.setSolved(false);
-        p.setSolvedAt(null);
-        p.setTimeTakenMinutes(null);
-        return problemRepository.save(p);
+
+        user.getSolvedProblems().removeIf(sp -> sp.getProblemId().equals(id));
+        userRepository.save(user);
+
+        populateTransientFields(p, user);
+        return p;
     }
 
-    public Problem updateNotes(String id, String notes) {
+    public Problem updateNotes(User user, String id, String notes) {
         Problem p = problemRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Problem not found: " + id));
-        p.setNotes(notes);
-        return problemRepository.save(p);
+
+        user.getSolvedProblems().stream()
+                .filter(sp -> sp.getProblemId().equals(id))
+                .findFirst()
+                .ifPresent(sp -> {
+                    sp.setNotes(notes);
+                    userRepository.save(user);
+                });
+
+        populateTransientFields(p, user);
+        return p;
     }
 
-    public List<Problem> getByCompany(String company) {
-        return problemRepository.findByCompaniesContainingIgnoreCase(company);
+    public List<Problem> getByCompany(User user, String company) {
+        List<Problem> list = problemRepository.findByCompaniesContainingIgnoreCase(company);
+        populateTransientFields(list, user);
+        return list;
     }
 
-    public long countSolved() {
-        return problemRepository.countBySolved(true);
+    public long countSolved(User user) {
+        return user.getSolvedProblems().size();
     }
 
     public long countTotal() {
@@ -92,15 +149,21 @@ public class ProblemService {
         return problemRepository.countByDifficulty(d);
     }
 
-    public long countSolvedByDifficulty(Difficulty d) {
-        return problemRepository.countByDifficultyAndSolved(d, true);
+    public long countSolvedByDifficulty(User user, Difficulty d) {
+        List<String> solvedIds = user.getSolvedProblems().stream().map(SolvedProblem::getProblemId).toList();
+        return problemRepository.findAllById(solvedIds).stream()
+                .filter(p -> p.getDifficulty() == d)
+                .count();
     }
 
     public long countByTopic(Topic t) {
         return problemRepository.countByTopic(t);
     }
 
-    public long countSolvedByTopic(Topic t) {
-        return problemRepository.countByTopicAndSolved(t, true);
+    public long countSolvedByTopic(User user, Topic t) {
+        List<String> solvedIds = user.getSolvedProblems().stream().map(SolvedProblem::getProblemId).toList();
+        return problemRepository.findAllById(solvedIds).stream()
+                .filter(p -> p.getTopic() == t)
+                .count();
     }
 }

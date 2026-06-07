@@ -1,13 +1,16 @@
 package com.placement.codeedge.controller;
 
 import com.placement.codeedge.model.Problem;
+import com.placement.codeedge.model.User;
 import com.placement.codeedge.model.enums.Difficulty;
 import com.placement.codeedge.model.enums.Topic;
+import com.placement.codeedge.service.CustomUserDetailsService.CustomUserDetails;
 import com.placement.codeedge.service.ProblemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +32,11 @@ public class ProblemController {
             @RequestParam(required = false) String difficulty,
             @RequestParam(required = false) String solved,
             @RequestParam(required = false) String search,
+            @AuthenticationPrincipal CustomUserDetails userDetails,
             Model model) {
 
-        List<Problem> problems = problemService.getFiltered(topic, difficulty, solved, search);
+        User user = userDetails.getUser();
+        List<Problem> problems = problemService.getFiltered(user, topic, difficulty, solved, search);
 
         model.addAttribute("problems", problems);
         model.addAttribute("topics", Topic.values());
@@ -54,15 +59,18 @@ public class ProblemController {
             @RequestParam(required = false) String topic,
             @RequestParam(required = false) String difficulty,
             @RequestParam(required = false) String solved,
-            @RequestParam(required = false) String search) {
-        return problemService.getFiltered(topic, difficulty, solved, search);
+            @RequestParam(required = false) String search,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        return problemService.getFiltered(userDetails.getUser(), topic, difficulty, solved, search);
     }
 
     @GetMapping("/api/problems/{id}")
     @ResponseBody
     @Operation(summary = "Get problem by ID")
-    public ResponseEntity<Problem> getById(@PathVariable String id) {
-        return problemService.getById(id)
+    public ResponseEntity<Problem> getById(
+            @PathVariable String id,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        return problemService.getById(id, userDetails.getUser())
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -73,9 +81,10 @@ public class ProblemController {
     public ResponseEntity<Problem> markSolved(
             @PathVariable String id,
             @RequestParam(required = false) Integer timeTaken,
-            @RequestParam(required = false) String notes) {
+            @RequestParam(required = false) String notes,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         try {
-            return ResponseEntity.ok(problemService.markSolved(id, timeTaken, notes));
+            return ResponseEntity.ok(problemService.markSolved(userDetails.getUser(), id, timeTaken, notes));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -84,9 +93,11 @@ public class ProblemController {
     @PostMapping("/api/problems/{id}/unsolved")
     @ResponseBody
     @Operation(summary = "Mark a problem as unsolved")
-    public ResponseEntity<Problem> markUnsolved(@PathVariable String id) {
+    public ResponseEntity<Problem> markUnsolved(
+            @PathVariable String id,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         try {
-            return ResponseEntity.ok(problemService.markUnsolved(id));
+            return ResponseEntity.ok(problemService.markUnsolved(userDetails.getUser(), id));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -97,9 +108,10 @@ public class ProblemController {
     @Operation(summary = "Update notes for a problem")
     public ResponseEntity<Problem> updateNotes(
             @PathVariable String id,
-            @RequestBody Map<String, String> body) {
+            @RequestBody Map<String, String> body,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         try {
-            return ResponseEntity.ok(problemService.updateNotes(id, body.get("notes")));
+            return ResponseEntity.ok(problemService.updateNotes(userDetails.getUser(), id, body.get("notes")));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }

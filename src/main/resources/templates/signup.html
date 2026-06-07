@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>CodeEdge — Register.java</title>
+  <link rel="stylesheet" th:href="@{/css/style.css(v=2.0)}"/>
+  <style>
+    .auth-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 40px;
+    }
+    .auth-card {
+      width: 400px;
+      padding: 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      text-align: left;
+    }
+    .auth-header {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .auth-header h2 {
+      font-size: 24px;
+      color: var(--text-active);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .auth-header p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-active);
+      margin-bottom: 6px;
+      font-family: monospace;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-active);
+      font-family: monospace;
+      font-size: 13px;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: monospace;
+      transition: opacity 0.2s;
+    }
+    .auth-btn:hover {
+      opacity: 0.9;
+    }
+    .auth-footer {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .auth-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+    .alert {
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: monospace;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgb(239, 68, 68);
+      color: rgb(248, 113, 113);
+    }
+  </style>
+</head>
+<body>
+<div class="app-window">
+  <!-- Window Titlebar -->
+  <div class="titlebar">
+    <div class="window-controls">
+      <span class="control-btn close"></span>
+      <span class="control-btn minimize"></span>
+      <span class="control-btn maximize"></span>
+    </div>
+    <div class="app-title">CodeEdge Workspace — AuthManager.java</div>
+  </div>
+
+  <div class="workspace-container">
+    <main style="flex:1; background: var(--bg-main);">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2>📝 Sign Up</h2>
+            <p>Create a new SDE Placement account</p>
+          </div>
+
+          <!-- Alert Block -->
+          <div th:if="${error}" class="alert alert-error" th:text="${error}">
+            System.err: Error occurred.
+          </div>
+
+          <form th:action="@{/signup}" method="post">
+            <div class="form-group">
+              <label for="username">String username;</label>
+              <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" required autofocus/>
+            </div>
+            <div class="form-group">
+              <label for="email">String email;</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Enter email address" required/>
+            </div>
+            <div class="form-group">
+              <label for="password">String password;</label>
+              <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required minlength="6"/>
+            </div>
+            <button type="submit" class="auth-btn">Auth.signup();</button>
+          </form>
+
+          <div class="auth-footer">
+            Already have an account? <a href="/login">Auth.login();</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+</body>
+</html>
